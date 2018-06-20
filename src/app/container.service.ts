@@ -9,7 +9,7 @@ export class ContainerService {
     getContainers(){
         const headers = new Headers({});
     //    return this.http.get('http://localhost:8023/?mode=tickers',{headers:headers});
-        return this.http.get('/json/containers.json?',{headers:headers});
+        return this.http.get('/json/containers.json?'+Date.now(),{headers:headers});
      }
 
      getContainerLogs(container){

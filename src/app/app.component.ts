@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { ContainerService } from './container.service';
+import * as io from 'socket.io-client';
 import 'he';
-import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
+
+//declare const io;
 declare var he: any;
+
+
 
 @Component({
   selector: 'app-root',
@@ -16,6 +20,9 @@ export class AppComponent {
   container='';
   logs=[];
   logbits = [];
+  containerLoading = false;
+  socket = io.connect('http://0.0.0.0:3000');
+
 
     constructor(private containerService: ContainerService) {}
     
@@ -32,8 +39,23 @@ export class AppComponent {
         );
       }
 
+    public getConnections(){
+      this.socket.on('web', (data) => {
+        if (data.type=='container_update'){
+          if (data.container_name==this.container)
+            {
+              this.getContainerLogs(data.container_name);
+            }
+        console.log(this.container);
+        }        
+      })
+      return () => {
+        this.socket.disconnect();
+      }
+    }
     
     public getContainerLogs(event){
+      this.containerLoading=true;
       this.logs=[];
       this.logbits=[];
       console.log(event)
@@ -44,10 +66,10 @@ export class AppComponent {
             //response.text().split("\n")
            
             
-            console.log(this.logbits)
+            
             var i=0;
             for (let entry of this.logbits.reverse()) {
-              console.log(i);
+             
               if (entry!=''){
               this.logs.push(JSON.parse(entry));
               i++;
@@ -56,6 +78,7 @@ export class AppComponent {
   
               //console.log(entry); // 1, "string", false
           }
+          this.containerLoading=false;
           
             
 
@@ -65,7 +88,11 @@ export class AppComponent {
     }
     
     ngOnInit() {
+      
       this.getContainers();
+      this.getConnections();
+      
+      
     }     
 
 }

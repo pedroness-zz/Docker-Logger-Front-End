@@ -22,6 +22,7 @@
               
               "src/favicon.ico",
               "src/assets",
+              "src/monitor.js",
               "src/json"    
             ],
             "styles": [

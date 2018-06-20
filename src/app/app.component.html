@@ -10,7 +10,7 @@ Select Container:
 
 <hr>
 <div class="table-responsive">
-        
+<div *ngIf="containerLoading1" align=center><img src="assets/loading.gif"></div>        
 <table class="table table-hover table-bordered ">
 
     <tr *ngFor="let logentry of logs">
