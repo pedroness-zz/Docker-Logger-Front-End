@@ -9,9 +9,7 @@ var OAUTH_TOKEN='336963e2ea013c516812a0d7320344b23f6b7777';
 var options = {
     url: 'https://api.github.com/repos/pedroness/Docker-Logger-Front-End/commits',
     headers: {
-      
-      'User-Agent': 'Docker Logger Updater',
-      
+      'User-Agent': 'Docker Logger Updater', 
     }
   };
 
@@ -76,9 +74,8 @@ function checkUpdates(options) {
      checkUpdates(options);
     });
     
-  }, 3000);
-
-  //1200000 every 20min
+  }, 1200000);
+//check every 20 min
 
 }
 
