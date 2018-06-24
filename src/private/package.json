@@ -1,0 +1,14 @@
+{
+  "name": "update_monitor_emitter",
+  "version": "1.0.0",
+  "description": "PRIVATE -> THIS FOLDER GETS MOVED AT BUILD TIME BY DOCKER IMAGE",
+  "main": "monitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  }
+}
